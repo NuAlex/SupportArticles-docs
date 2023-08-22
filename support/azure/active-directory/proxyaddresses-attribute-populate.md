@@ -17,11 +17,14 @@ The proxyAddresses attribute in Active Directory is a multi-value property that 
 
 - Set or update the Primary SMTP address and additional secondary addresses based on the on-premises ProxyAddresses or UserPrincipalName. 
 - Set or update the Mail attribute based on the calculated Primary SMTP address.
-- Set or update the MailNickName attribute based on the on-premises MailNickName or Primary SMTP address prefix.
+- Set or update the MailNickName attribute based on the on-premises MailNickName, Primary SMTP address or UserPrincipalName prefix.
 - Discard on-premises addresses that have a reserved domain suffix, e.g. @\*.onmicrosoft.com, @\*.microsoftonline.com;
 - Discard on-premises ProxyAddresses with legacy protocols like MSMAIL, X400, etc;
 - Discard malformed on-premises addresses or not compliant with RFC 5322, e.g. missing protocol prefix "SMTP:", containing a space or other invalid character;
 - Remove ProxyAddresses with a non-verified domain suffix, if the user is assigned an Exchange Online license.
+
+> [!NOTE]
+> The UserPrincipalName is always added as ProxyAddress when the user object is an Exchange Recipient. For instance, when it's a shared mailbox or an Exchange license is assigned.
 
 Therefore, the values of the Mail and ProxyAddresses attributes for the object in Active Directory may not be the same as the values of the ProxyAddresses attribute in Azure AD.
 
